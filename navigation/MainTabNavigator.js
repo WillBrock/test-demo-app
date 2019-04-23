@@ -7,6 +7,7 @@ import Home from '../screens/Home';
 import Tests from '../screens/Tests';
 import Login from '../screens/Login';
 import Switches from '../screens/Switches';
+import Pickers from '../screens/Pickers';
 
 const HomeStack = createStackNavigator({
 	Home,
@@ -30,6 +31,7 @@ const TestsStack = createStackNavigator({
 	Tests,
 	Login,
 	Switches,
+	Pickers,
 });
 
 TestsStack.navigationOptions = {

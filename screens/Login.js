@@ -1,31 +1,73 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Input, Button } from 'react-native-elements';
+import testProperties from '../config/testProperties';
 
 export default class Login extends Component {
 	static navigatorOptions = {
-		header : `Login`,
+		title : `Login`,
 	}
 
 	state = {
-		loading : false
+		loading : false,
+		success : false,
+		error   : false,
 	};
+
+	login = () => {
+		this.setState({
+			loading : true ,
+			success : false,
+			error   : false,
+		});
+
+		const username = this.state.username;
+		const password = this.state.password;
+
+		if(username === `foo` && password === `bar`) {
+			this.setState({ success : true });
+		}
+		else {
+			this.setState({ success : false });
+		}
+
+		this.setState({ loading : false });
+	}
+
+	handleChange = (event) => {
+		this.setState({
+			[event.target.name] : event.target.value,
+		});
+	}
 
 	render() {
 		return (
-			<View style={{ flex : 1, backgroundColor : `#d3d3d3` }}>
+			<View style={styles.container}>
 				<View style={styles.informationContainer}>
 					<Text style={styles.information}>Username: foo</Text>
 					<Text style={styles.information}>Password: bar</Text>
 				</View>
-				<View style={{ marginTop : 70, paddingLeft : 30, paddingRight : 30 }}>
-					<Input placeholder="Username" containerStyle={styles.input} />
-					<Input placeholder="Password" containerStyle={styles.input} />
+				{
+					this.state.error &&
+					<View>
+						<Text style={styles.error}>Login Failed</Text>
+					</View>
+				}
+
+				{
+					this.state.success &&
+					<View>
+						<Text style={styles.success}>Success!</Text>
+					</View>
+				}
+				<View style={{ marginTop : 5, paddingLeft : 30, paddingRight : 30 }}>
+					<Input name="username" placeholder="Username" containerStyle={styles.input} onChangeText={this.handleChange} />
+					<Input name="password" placeholder="Password" containerStyle={styles.input} onChangeText={this.handleChange} />
 					<Button
 						buttonStyle={styles.button}
 						title="Sign In"
 						loading={this.state.loading}
-						onPress={() => (this.setState({ loading : true }))}
+						onPress={this.login}
 					>Sign In</Button>
 				</View>
 			</View>
@@ -34,23 +76,37 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+	container : {
+		flex            : 1,
+		backgroundColor : `#d3d3d3`
+	},
 	informationContainer : {
-		marginTop : 90,
+		marginTop : 10,
 	},
 	information : {
-		textAlign : `center`,
+		textAlign     : `center`,
 		paddingBottom : 5,
 	},
 
 	input : {
-		borderRadius : 5,
-		padding : 5,
-		marginTop : 10,
+		borderRadius    : 5,
+		padding         : 5,
+		marginTop       : 10,
 		backgroundColor : `#fff`,
 	},
 
 	button : {
 		marginTop : 10,
-		padding : 15,
+		padding   : 15,
+	},
+
+	success : {
+		color     : `green`,
+		textAlign : `center`,
+	},
+
+	error : {
+		color     : `red`,
+		textAlign : `center`,
 	},
 });

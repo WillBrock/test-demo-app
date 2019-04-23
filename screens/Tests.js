@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import testProperties from '../config/testProperties';
 
 const list = [
 	{ key : `Login` },
 	{ key : `Loading` },
-	{ key : `Picker` },
+	{ key : `Pickers` },
 	{ key : `Text Inputs` },
 	{ key : `Switches`},
 	{ key : `WebView` },
@@ -29,7 +30,7 @@ export default class Tests extends Component {
 							title={item.key}
 							onPress={() => this.props.navigation.navigate(item.key)}
 							contentContainerStyle={styles.list_item}
-							accessibilityLabel={item.key}
+							{...testProperties(`test-${item.key}`)}
 						/>
 					))
 				}
