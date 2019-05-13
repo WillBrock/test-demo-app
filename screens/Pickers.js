@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Picker } from 'react-native';
+import testProperties from '../config/testProperties';
 
 export default class Pickers extends Component {
 	static navigationOptions = {
@@ -40,6 +41,7 @@ export default class Pickers extends Component {
 					selectedValue={this.state.selected}
 					onValueChange={(selected) => ( this.setState({ selected }))}
 					style={styles.picker}
+					{...testProperties(`picker-container`)}
 				>
 					{
 						this.options.map((option) => (

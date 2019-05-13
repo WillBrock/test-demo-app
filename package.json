@@ -21,6 +21,7 @@
     "babel-preset-expo": "^5.0.0",
     "jest-expo": "^32.0.0",
     "react-native-elements": "^1.1.0",
+    "react-native-webview": "^5.7.1",
     "styled-components": "^4.2.0"
   },
   "private": true

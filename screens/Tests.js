@@ -7,10 +7,8 @@ const list = [
 	{ key : `Login` },
 	{ key : `Loading` },
 	{ key : `Pickers` },
-	{ key : `Text Inputs` },
 	{ key : `Switches`},
 	{ key : `WebView` },
-	//{ key : `Push Notifications`},
 	{ key : `Modal` },
 	{ key : `Swipe`},
 ];
